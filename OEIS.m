@@ -9,7 +9,7 @@
 (* :Summary:
     Lightweight access to OEIS sequence data through the official JSON API.
 *)
-(* :Package Version: 3.0 *)
+(* :Package Version: 3.1 *)
 (* :Mathematica Version: 11.0.0.0 *)
 (* :Links:
 The OEIS Foundation Inc:            https://oeisf.org/
@@ -17,6 +17,11 @@ OEIS:                               https://oeis.org/
 *)
 (* :History:
     V. 3.0 11 Jul 2026, by Copilot. Rebuilt around the official OEIS JSON API.
+    V. 3.1 11 Jul 2026. Fixed JSON result parsing (the live API returns a
+      bare array, not a {"results": [...]} wrapper), fixed offset parsing
+      ("start,digits" strings), fixed BibTeX date parsing (ISO-8601
+      timestamps), and added a curl-based fallback for HTTP fetches when
+      Mathematica's built-in client is unavailable.
 *)
 (* :Keywords:
     packages, sequence, OEIS
@@ -52,17 +57,42 @@ Begin["`Private`"];
 
 OEISServerURL = "https://oeis.org/";
 
-ClearAll[OEISJSONURL, OEISReadJSON, OEISGetResult, OEISLookupValue, OEISParseTerms, OEISMakePairs, OEISGetEntry];
+ClearAll[OEISJSONURL, OEISReadJSON, OEISReadJSONViaCurl, OEISGetResult, OEISLookupValue, OEISParseTerms, OEISMakePairs, OEISParseOffset, OEISParseDateTokens, OEISGetEntry];
 
 (* Build the official OEIS search URL for a given sequence ID. *)
 OEISJSONURL[ID_String] := OEISServerURL <> "search?q=id:" <> ID <> "&fmt=json";
 
-(* Download and parse the JSON payload returned by OEIS. *)
-OEISReadJSON[ID_String] := Quiet@Check[Import[OEISJSONURL[ID], "JSON"], $Failed];
+(* Download and parse the JSON payload returned by OEIS.
+   Falls back to an external curl call when Mathematica's built-in
+   HTTP client cannot be used (e.g. a broken/mismatched CURLLink on
+   some Linux installs), so the package keeps working either way. *)
+OEISReadJSON[ID_String] := Module[{result},
+  result = Quiet@Check[Import[OEISJSONURL[ID], "JSON"], $Failed];
+  If[result === $Failed, result = OEISReadJSONViaCurl[ID]];
+  result
+];
 
-(* Extract the first result entry from the returned JSON structure. *)
+OEISReadJSONViaCurl[ID_String] := Module[{proc},
+  (* Mathematica prepends its own bundled libraries to LD_LIBRARY_PATH,
+     which can make an external curl load an incompatible libcurl.so;
+     unset it in the subshell so the system's own curl runs cleanly. *)
+  proc = Quiet@Check[
+    RunProcess[{"bash", "-c", "unset LD_LIBRARY_PATH; exec curl -sS --max-time 20 \"$1\"", "curl-oeis", OEISJSONURL[ID]}],
+    $Failed
+  ];
+  If[proc === $Failed || proc["ExitCode"] =!= 0, Return[$Failed]];
+  Quiet@Check[ImportString[proc["StandardOutput"], "JSON"], $Failed]
+];
+
+(* Extract the first result entry from the returned JSON structure.
+   The live API returns a bare JSON array of results; older/alternate
+   endpoints wrap it as {"results": [...]}, so both shapes are handled. *)
 OEISGetResult[json_] := Module[{entries},
-  entries = If[AssociationQ[json], Lookup[json, "results", {}], {}];
+  entries = Which[
+    ListQ[json], json,
+    AssociationQ[json], Lookup[json, "results", {}],
+    True, {}
+  ];
   If[ListQ[entries] && Length[entries] > 0, First[entries], Missing["NotFound"]]
 ];
 
@@ -89,6 +119,26 @@ OEISParseTerms[raw_] := Module[{value = raw},
 
 (* Build the standard {n, value} pairs used by the package. *)
 OEISMakePairs[terms_List, offset_Integer: 1] := MapIndexed[{offset + #2[[1]] - 1, #1} &, terms];
+
+(* OEIS reports the offset as "start,digits" (e.g. "0,4"); only the
+   leading number is the actual starting index n for the data terms. *)
+OEISParseOffset[raw_] := Module[{value = raw, first},
+  If[MissingQ[value] || value === $Failed, Return[1]];
+  If[IntegerQ[value], Return[value]];
+  first = First[StringSplit[ToString[value], ","], "1"];
+  value = Quiet@Check[ToExpression[first], 1];
+  If[IntegerQ[value], value, 1]
+];
+
+(* OEIS reports dates as ISO-8601 timestamps (e.g. "1991-04-30T03:00:00-04:00");
+   this returns {monthShortName, day, year} for use in citation exports. *)
+OEISParseDateTokens[raw_] := Module[{value = raw, dateObj},
+  If[ListQ[value], value = If[Length[value] > 0, First[value], ""]];
+  If[!StringQ[value] || StringLength[value] < 10, Return[{ToString[value]}]];
+  dateObj = Quiet@Check[DateObject[DateList[StringTake[value, 10]], "Day"], $Failed];
+  If[dateObj === $Failed, Return[{value}]];
+  {DateString[dateObj, "MonthNameShort"], DateString[dateObj, "Day"], DateString[dateObj, "Year"]}
+];
 
 (* Fetch one complete OEIS entry for a given ID. *)
 OEISGetEntry[ID_String] := Module[{json, result},
@@ -141,8 +191,7 @@ OEISImport[ID_?OEISValidateIDQ, element_ : "Data"] := Module[{entry, result, off
       raw = OEISLookupValue[entry, {"data", "seq", "values", "terms"}];
       terms = OEISParseTerms[raw];
       If[terms === {}, Return[{}]];
-      offset = Quiet@Check[ToExpression[OEISLookupValue[entry, {"offset", "start", "from"}]], 1];
-      If[!IntegerQ[offset], offset = 1];
+      offset = OEISParseOffset[OEISLookupValue[entry, {"offset", "start", "from"}]];
       result = OEISMakePairs[terms, offset];
       result,
 
@@ -159,9 +208,8 @@ OEISImport[ID_?OEISValidateIDQ, element_ : "Data"] := Module[{entry, result, off
 
     element === "Date",
       result = OEISLookupValue[entry, {"date", "created", "updated"}];
-      If[MissingQ[result] || result === "", result = {""}];
-      If[!ListQ[result], result = {result}];
-      result,
+      If[MissingQ[result] || result === "", Return[{""}]];
+      OEISParseDateTokens[result],
 
     element === "Image",
       Message[OEIS::bFile, "Image data is not exposed by the official JSON API."];
@@ -172,8 +220,7 @@ OEISImport[ID_?OEISValidateIDQ, element_ : "Data"] := Module[{entry, result, off
       If[result === $Failed || result === {}, $Failed, result],
 
     element === "Offset" || element === "MinData",
-      offset = Quiet@Check[ToExpression[OEISLookupValue[entry, {"offset", "start", "from"}]], 1];
-      If[!IntegerQ[offset], offset = 1];
+      offset = OEISParseOffset[OEISLookupValue[entry, {"offset", "start", "from"}]];
       offset,
 
     element === "MaxData",

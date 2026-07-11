@@ -21,6 +21,16 @@ dates and export data in several formats such as BibTeX, HTML or plain text.
 - Lightweight and easier to maintain than the previous HTML-based implementation
 - Support for common package operations such as validation, import and export
 
+## Tutorial
+
+A full walkthrough with real, verified output is available at
+[EnriquePH.github.io/OEIS-Mathematica](https://enriqueph.github.io/OEIS-Mathematica/).
+The runnable source for that tutorial is [test/OEISTutorial.wl](test/OEISTutorial.wl):
+
+```
+wolframscript -file test/OEISTutorial.wl
+```
+
 ## Quick start
 
 Load the package in a Wolfram notebook with:
@@ -54,6 +64,14 @@ OEISImport["A000045", "Description"]
 ## Citation
 
 If you use this package in a project or publication, please cite it using the metadata in [CITATION.cff](CITATION.cff).
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+
+## Code of Conduct
+
+Please review [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before participating in the project.
 
 ## License
 
