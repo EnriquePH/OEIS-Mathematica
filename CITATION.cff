@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "OEIS.m"
+type: software
+authors:
+  - family-names: Pérez Herrero
+    given-names: Enrique
+    orcid: ""
+version: "3.0"
+date-released: "2026-07-11"
+url: "https://github.com/Psychedelic-Geometry/OEIS-Mathematica"
+license: "GPL-3.0"
+description: "Wolfram Language package for working with OEIS sequence data through the official JSON API."
