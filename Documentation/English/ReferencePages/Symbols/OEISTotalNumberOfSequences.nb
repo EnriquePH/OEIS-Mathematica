@@ -1,0 +1,77 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2202,         68]
+NotebookOptionsPosition[      1108,         45]
+NotebookOutlinePosition[      1464,         60]
+CellTagsIndexPosition[      1421,         57]
+WindowTitle->OEISTotalNumberOfSequences
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["OEISTotalNumberOfSequences", "ObjectName"],
+
+Cell["\<\
+OEISTotalNumberOfSequences[] returns an estimate of the number of sequences \
+OEIS currently contains, by checking that OEIS can be reached.\
+\>", "Usage"],
+
+Cell["Options", "Subsubsection"],
+
+Cell["URL -> True", "Text"],
+
+Cell[CellGroupData[{
+
+Cell["Basic Examples", "ExampleSection"],
+
+Cell["OEISTotalNumberOfSequences[]", "Input"],
+
+Cell["20000", "Output"]
+}, Open  ]],
+
+Cell["See Also", "SeeAlsoSection"],
+
+Cell["OEISValidateIDQ", "SeeAlso"]
+},
+WindowTitle->"OEISTotalNumberOfSequences",
+TaggingRules->Association["Paclet" -> "OEIS"],
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Reference.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[598, 21, 48, 0, 70, "ObjectName",ExpressionUUID->"5b0fb291-d433-4ebe-b593-12bf61f8805c"],
+Cell[649, 23, 165, 3, 70, "Usage",ExpressionUUID->"a3ae954a-2a76-4eef-aba7-976dcf3fec46"],
+Cell[817, 28, 32, 0, 70, "Subsubsection",ExpressionUUID->"9ff2b050-993e-442c-8ebb-3a8148fe258c"],
+Cell[852, 30, 27, 0, 70, "Text",ExpressionUUID->"8a1235c6-38a2-4bd6-86e8-ea2999f815ef"],
+Cell[CellGroupData[{
+Cell[904, 34, 40, 0, 70, "ExampleSection",ExpressionUUID->"caa19719-2b12-438a-8f5f-b417bdc86d1a"],
+Cell[947, 36, 45, 0, 70, "Input",ExpressionUUID->"79e24f0b-5130-4b9a-9425-d97ad08f5952"],
+Cell[995, 38, 23, 0, 70, "Output",ExpressionUUID->"511f0358-02bf-42d1-bd1d-9f480e06f067"]
+}, Open  ]],
+Cell[1033, 41, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"27d66c17-6e24-4183-8217-0285fa523e4c"],
+Cell[1070, 43, 34, 0, 70, "SeeAlso",ExpressionUUID->"03c41577-0bf9-4cb9-9468-21308c468d5d"]
+}
+]
+*)
+
+(* End of internal cache information *)

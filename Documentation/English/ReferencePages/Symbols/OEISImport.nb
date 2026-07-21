@@ -1,0 +1,99 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3138,         90]
+NotebookOptionsPosition[      1696,         63]
+NotebookOutlinePosition[      2036,         78]
+CellTagsIndexPosition[      1993,         75]
+WindowTitle->OEISImport
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["OEISImport", "ObjectName"],
+
+Cell["\<\
+OEISImport[id,element] retrieves the requested piece of data for an OEIS \
+sequence from the official JSON API. element can be \"Data\", \
+\"Description\", \"Author\", \"Date\", \"Offset\"/\"MinData\", \"MaxData\" or \
+\"bFile\".\
+\>", "Usage"],
+
+Cell[CellGroupData[{
+
+Cell["Basic Examples", "ExampleSection"],
+
+Cell["OEISImport[\"A000045\", \"Description\"]", "Input"],
+
+Cell["\<\
+\"Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.\"\
+\>", "Output"],
+
+Cell["OEISImport[\"A000045\", \"Data\"]", "Input"],
+
+Cell["\<\
+{{0, 0}, {1, 1}, {2, 1}, {3, 2}, {4, 3}, {5, 5}, {6, 8}, {7, 13}, {8, 21}, \
+{9, 34}, {10, 55}, {11, 89}} (* ... 41 terms total *)\
+\>", "Output"],
+
+Cell["OEISImport[\"A000045\", \"MinData\"]", "Input"],
+
+Cell["0", "Output"],
+
+Cell["OEISImport[\"A000045\", \"Author\"]", "Input"],
+
+Cell["{\"_N. J. A. Sloane_, 1964\"}", "Output"]
+}, Open  ]],
+
+Cell["See Also", "SeeAlsoSection"],
+
+Cell["\<\
+OEISFunction  \[FilledSmallSquare]  OEISExport  \[FilledSmallSquare]  \
+OEISbFile  \[FilledSmallSquare]  OEISValidateIDQ\
+\>", "SeeAlso"]
+},
+WindowTitle->"OEISImport",
+TaggingRules->Association["Paclet" -> "OEIS"],
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Reference.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[582, 21, 32, 0, 70, "ObjectName",ExpressionUUID->"2825842e-a712-4815-8638-4b54ab669a5a"],
+Cell[617, 23, 254, 5, 70, "Usage",ExpressionUUID->"a1e545b3-a505-4298-8e7e-dee0bc86b15f"],
+Cell[CellGroupData[{
+Cell[896, 32, 40, 0, 70, "ExampleSection",ExpressionUUID->"de8c47f7-3be2-4279-8c18-370c9af21c4c"],
+Cell[939, 34, 57, 0, 70, "Input",ExpressionUUID->"0cc6b74d-bc0a-4164-84a4-8e1cc3df89f0"],
+Cell[999, 36, 99, 2, 70, "Output",ExpressionUUID->"d061543d-6f72-4542-b5a8-1e404e491e32"],
+Cell[1101, 40, 50, 0, 70, "Input",ExpressionUUID->"1d916acb-2e39-44ed-99a0-120ee91c5126"],
+Cell[1154, 42, 156, 3, 70, "Output",ExpressionUUID->"6ff24ad5-3428-4cff-afd6-58ff99d0de75"],
+Cell[1313, 47, 53, 0, 70, "Input",ExpressionUUID->"9af90e27-7fb7-45e0-806d-d03b85a59d9b"],
+Cell[1369, 49, 19, 0, 70, "Output",ExpressionUUID->"674a2be9-79b2-436f-9b65-b77f4d927dc3"],
+Cell[1391, 51, 52, 0, 70, "Input",ExpressionUUID->"2846c69c-e8d1-4ae6-91ab-2899986bfbdb"],
+Cell[1446, 53, 47, 0, 70, "Output",ExpressionUUID->"0b9b05dc-3f89-40c2-a730-c7ac753f5c4f"]
+}, Open  ]],
+Cell[1508, 56, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"10776d57-36fd-4739-ba89-39ce6935a7bc"],
+Cell[1545, 58, 147, 3, 70, "SeeAlso",ExpressionUUID->"fd660895-01a0-410e-8cb6-063ec717070b"]
+}
+]
+*)
+
+(* End of internal cache information *)

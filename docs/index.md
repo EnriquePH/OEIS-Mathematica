@@ -141,4 +141,4 @@ If `Import`/`URLFetch` fail with `curlLink_initialize was not loaded` or `OEIS::
 | `OEISExport` | Export to `.m`, `.txt`/`.csv`/`.tsv`, `.bib`, `.html`, `.wiki`, images |
 | `OEISbFile` | Write a b-file for a given ID up to a maximum index |
 
-See the [README](https://github.com/EnriquePH/OEIS-Mathematica#readme) for installation and project status, and [CONTRIBUTING.md](https://github.com/EnriquePH/OEIS-Mathematica/blob/master/CONTRIBUTING.md) to send improvements.
+See the [Function Index](functions.md) for full signatures and options, the [README](https://github.com/EnriquePH/OEIS-Mathematica#readme) for installation and project status, and [CONTRIBUTING.md](https://github.com/EnriquePH/OEIS-Mathematica/blob/master/CONTRIBUTING.md) to send improvements.

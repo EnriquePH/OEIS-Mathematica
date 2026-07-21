@@ -1,0 +1,54 @@
+name: Wolfram version compatibility
+
+# Runs the offline test suite against several Wolfram Engine releases
+# via the official wolframresearch/wolframengine Docker images, so a
+# regression tied to one specific engine version doesn't slip in
+# unnoticed. Separate from ci.yml, which only checks the OS matrix
+# against whatever engine version that action currently installs.
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'Kernel/**'
+      - 'PacletInfo.wl'
+      - 'Tests/**'
+      - '.github/workflows/wolfram-version-compat.yml'
+  workflow_dispatch:
+  schedule:
+    # First of every month, to catch drift even with no local changes.
+    - cron: '0 6 1 * *'
+
+jobs:
+  compat:
+    name: WL ${{ matrix.version }}
+    runs-on: ubuntu-latest
+    container:
+      image: wolframresearch/wolframengine:${{ matrix.version }}
+      env:
+        WOLFRAMSCRIPT_ENTITLEMENTID: ${{ secrets.WOLFRAMSCRIPT_ENTITLEMENTID }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # 13.0 covers the oldest release with modern PacletInfo.wl
+        # support; 15.0 is current at the time this workflow was
+        # written. Update this list as new engines ship.
+        version: ['13.0', '13.3', '14.2', '15.0']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Report engine version
+        run: wolframscript -code '$Version'
+
+      - name: Run offline tests
+        run: wolframscript -file Tests/RunTests.wls --offline
+
+      - name: Verify PacletInfo.wl loads as a PacletObject
+        run: |
+          wolframscript -code '
+            paclet = Get["PacletInfo.wl"];
+            If[Head[paclet] =!= PacletObject,
+              Print["FAIL: PacletInfo.wl did not evaluate to a PacletObject on ", $Version];
+              Exit[1]
+            ];
+            Print["OK on ", $Version, ": ", paclet[[1]]["Name"], " ", paclet[[1]]["Version"]];
+          '

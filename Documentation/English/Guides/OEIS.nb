@@ -1,0 +1,118 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4474,        109]
+NotebookOptionsPosition[      2040,         75]
+NotebookOutlinePosition[      2331,         89]
+CellTagsIndexPosition[      2288,         86]
+WindowTitle->OEIS Package
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["OEIS Package", "GuideTitle"],
+
+Cell["\<\
+Retrieve, export and generate b-files for On-Line Encyclopedia of Integer \
+Sequences (OEIS) data through the official JSON API.\
+\>", "GuideAbstract"],
+
+Cell["Look up and validate sequences", "GuideFunctionsSubsection"],
+
+Cell["OEISValidateIDQ", "GuideFunction"],
+
+Cell["check that an identifier has the canonical OEIS shape", "GuideText"],
+
+Cell["OEISURL", "GuideFunction"],
+
+Cell["build a sequence or b-file URL", "GuideText"],
+
+Cell["OEISServerURL", "GuideFunction"],
+
+Cell["the base URL used for every OEIS request", "GuideText"],
+
+Cell["OEISTotalNumberOfSequences", "GuideFunction"],
+
+Cell["an estimate of how many sequences OEIS contains", "GuideText"],
+
+Cell["Retrieve sequence data", "GuideFunctionsSubsection"],
+
+Cell["OEISImport", "GuideFunction"],
+
+Cell["\<\
+retrieve data, description, author, date or offset for a sequence\
+\>", "GuideText"],
+
+Cell["OEISFunction", "GuideFunction"],
+
+Cell["materialize id[n] in your session, preloaded from OEIS", "GuideText"],
+
+Cell["Export and generate files", "GuideFunctionsSubsection"],
+
+Cell["OEISExport", "GuideFunction"],
+
+Cell["\<\
+export sequence data or citations to .m, .txt, .bib, .html, .wiki, images\
+\>", "GuideText"],
+
+Cell["OEISbFile", "GuideFunction"],
+
+Cell["write a b-file, using a locally defined id[n] when available", \
+"GuideText"],
+
+Cell["Tutorials", "RelatedTutorialsSection"],
+
+Cell["OEIS Package: A Tutorial", "RelatedTutorials"]
+},
+WindowTitle->"OEIS Package",
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Guide.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[584, 21, 34, 0, 70, "GuideTitle",ExpressionUUID->"0ab4f744-b42e-4f05-8581-3fc04c3a95ad"],
+Cell[621, 23, 161, 3, 70, "GuideAbstract",ExpressionUUID->"4bb449c1-f7de-4a81-9284-8366206a0d8d"],
+Cell[785, 28, 66, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"f0910b9e-80fa-4c96-a86e-b49f6ed48e36"],
+Cell[854, 30, 40, 0, 70, "GuideFunction",ExpressionUUID->"d4d693c3-5c2f-4507-bf73-955d06f26761"],
+Cell[897, 32, 74, 0, 70, "GuideText",ExpressionUUID->"17c026c8-322a-40a6-8d0d-c7a47b38b888"],
+Cell[974, 34, 32, 0, 70, "GuideFunction",ExpressionUUID->"7d685cd5-93c7-4978-96e4-7b86c0330676"],
+Cell[1009, 36, 51, 0, 70, "GuideText",ExpressionUUID->"c8d4033e-5a3c-4943-ae21-a38fd97948db"],
+Cell[1063, 38, 38, 0, 70, "GuideFunction",ExpressionUUID->"9356261c-592a-43c3-b279-fdc76381749d"],
+Cell[1104, 40, 61, 0, 70, "GuideText",ExpressionUUID->"1b17d1c4-3464-4c5d-9cd9-c9b070a85bf9"],
+Cell[1168, 42, 51, 0, 70, "GuideFunction",ExpressionUUID->"61d5638d-6b09-4f3c-a79b-e6862f8b4753"],
+Cell[1222, 44, 68, 0, 70, "GuideText",ExpressionUUID->"7925edb1-10de-41b7-8f23-58da4c8228ce"],
+Cell[1293, 46, 58, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"9a88d175-5ada-408f-acc8-c17ce272a1a7"],
+Cell[1354, 48, 35, 0, 70, "GuideFunction",ExpressionUUID->"b7dc2f5e-0bee-4e09-a088-933d7c200665"],
+Cell[1392, 50, 94, 2, 70, "GuideText",ExpressionUUID->"b4272087-e995-4ca4-9165-cacef18dd85f"],
+Cell[1489, 54, 37, 0, 70, "GuideFunction",ExpressionUUID->"5bc4817f-19a7-4e33-8ef5-5ed0f98e800f"],
+Cell[1529, 56, 75, 0, 70, "GuideText",ExpressionUUID->"75fc6771-e968-4af0-9c1c-37900b6679ea"],
+Cell[1607, 58, 61, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"bd155781-c17e-4521-be8c-b02c88d2c57b"],
+Cell[1671, 60, 35, 0, 70, "GuideFunction",ExpressionUUID->"259abfaf-d9bc-4416-86f0-5ce1db2cd634"],
+Cell[1709, 62, 102, 2, 70, "GuideText",ExpressionUUID->"9667cb9c-6f2e-4b7a-b57b-386945d2cfc3"],
+Cell[1814, 66, 34, 0, 70, "GuideFunction",ExpressionUUID->"66f77b72-8678-488d-9cd5-8be1da4f87b6"],
+Cell[1851, 68, 83, 1, 70, "GuideText",ExpressionUUID->"c46414a8-39fe-4250-8909-d72401232c7c"],
+Cell[1937, 71, 44, 0, 70, "RelatedTutorialsSection",ExpressionUUID->"345be500-c75c-4d8f-9f18-a2f569331a09"],
+Cell[1984, 73, 52, 0, 70, "RelatedTutorials",ExpressionUUID->"a7286bf5-23b6-4b2a-9bb2-bd1da3ad5856"]
+}
+]
+*)
+
+(* End of internal cache information *)

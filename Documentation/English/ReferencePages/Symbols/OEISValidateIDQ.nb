@@ -1,0 +1,85 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2552,         76]
+NotebookOptionsPosition[      1291,         51]
+NotebookOutlinePosition[      1636,         66]
+CellTagsIndexPosition[      1593,         63]
+WindowTitle->OEISValidateIDQ
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["OEISValidateIDQ", "ObjectName"],
+
+Cell["\<\
+OEISValidateIDQ[id] checks that id has the canonical OEIS shape \"A\" \
+followed by 6 digits, such as \"A000045\". OEISValidateIDQ[{id1,id2,...}] \
+checks every id in the list.\
+\>", "Usage"],
+
+Cell[CellGroupData[{
+
+Cell["Basic Examples", "ExampleSection"],
+
+Cell["OEISValidateIDQ[\"A000045\"]", "Input"],
+
+Cell["True", "Output"],
+
+Cell["OEISValidateIDQ[{\"A000045\", \"A000040\"}]", "Input"],
+
+Cell["True", "Output"],
+
+Cell["Quiet[OEISValidateIDQ[\"not-an-id\"]]", "Input"],
+
+Cell["False", "Output"]
+}, Open  ]],
+
+Cell["See Also", "SeeAlsoSection"],
+
+Cell["OEISImport  \[FilledSmallSquare]  OEISURL  \[FilledSmallSquare]  \
+OEISFunction", "SeeAlso"]
+},
+WindowTitle->"OEISValidateIDQ",
+TaggingRules->Association["Paclet" -> "OEIS"],
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Reference.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[587, 21, 37, 0, 70, "ObjectName",ExpressionUUID->"b569f32a-ceaf-4f43-a234-8f818784bae9"],
+Cell[627, 23, 201, 4, 70, "Usage",ExpressionUUID->"b18b0de5-d684-4b61-a8d8-477cd4402912"],
+Cell[CellGroupData[{
+Cell[853, 31, 40, 0, 70, "ExampleSection",ExpressionUUID->"b4cd63c2-c07d-4660-abda-0cd0f6432e3a"],
+Cell[896, 33, 45, 0, 70, "Input",ExpressionUUID->"c1e2f594-4620-4e3e-96bf-cd6e009b6ca3"],
+Cell[944, 35, 22, 0, 70, "Output",ExpressionUUID->"57c0703d-375c-4314-ad1a-df6efcddc3d9"],
+Cell[969, 37, 60, 0, 70, "Input",ExpressionUUID->"b70d3c4b-c19d-4c9b-987c-2581fe4844a2"],
+Cell[1032, 39, 22, 0, 70, "Output",ExpressionUUID->"d10a834c-48b2-4857-96e3-b891ef832c02"],
+Cell[1057, 41, 54, 0, 70, "Input",ExpressionUUID->"52811392-129f-499d-be50-75fc98a4384e"],
+Cell[1114, 43, 23, 0, 70, "Output",ExpressionUUID->"15b4607e-7b89-405c-b532-b9ff6e211441"]
+}, Open  ]],
+Cell[1152, 46, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"012cae73-eb5f-48fc-8bb3-ae6ab9e81946"],
+Cell[1189, 48, 98, 1, 70, "SeeAlso",ExpressionUUID->"4054ca02-e5df-49b6-8d40-22f1f7da9a11"]
+}
+]
+*)
+
+(* End of internal cache information *)

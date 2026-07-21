@@ -5,9 +5,21 @@ type: software
 authors:
   - family-names: Pérez Herrero
     given-names: Enrique
-    orcid: ""
-version: "3.0"
-date-released: "2026-07-11"
-url: "https://github.com/Psychedelic-Geometry/OEIS-Mathematica"
+version: "4.0.0"
+date-released: "2026-07-21"
+url: "https://github.com/EnriquePH/OEIS-Mathematica"
+repository-code: "https://github.com/EnriquePH/OEIS-Mathematica"
 license: "GPL-3.0"
+keywords:
+  - OEIS
+  - integer sequences
+  - number theory
+  - Wolfram Language
+  - Mathematica
 description: "Wolfram Language package for working with OEIS sequence data through the official JSON API."
+# Once this repository is linked on Zenodo (see README > Citation) and a
+# release has been archived there, add the minted concept DOI here, e.g.:
+# identifiers:
+#   - type: doi
+#     value: 10.5281/zenodo.NNNNNNN
+#     description: "Concept DOI, always resolves to the latest release."

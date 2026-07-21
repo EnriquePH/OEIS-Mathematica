@@ -1,0 +1,82 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2469,         73]
+NotebookOptionsPosition[      1576,         52]
+NotebookOutlinePosition[      1915,         67]
+CellTagsIndexPosition[      1872,         64]
+WindowTitle->OEISbFile
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["OEISbFile", "ObjectName"],
+
+Cell["\<\
+OEISbFile[id,VMax,filename] writes a b-file with the values of id(n) for n \
+from the sequence offset up to VMax. If id[n_]:=... is already defined in the \
+session, that definition is used to compute every term up to VMax; otherwise \
+the data already published on OEIS is used instead.\
+\>", "Usage"],
+
+Cell[CellGroupData[{
+
+Cell["Basic Examples", "ExampleSection"],
+
+Cell["\<\
+A358061[n_] := Mod[EulerPhi[n], DivisorSigma[0, n]]; OEISbFile[\"A358061\", \
+20, FileNameJoin[{$TemporaryDirectory, \"b358061_doc_example.txt\"}]]; \
+ReadList[FileNameJoin[{$TemporaryDirectory, \"b358061_doc_example.txt\"}], \
+String]\
+\>", "Input"],
+
+Cell["\<\
+{\"1 0\", \"2 1\", \"3 0\", \"4 2\", \"5 0\", \"6 2\", \"7 0\", \"8 0\", \"9 \
+0\", \"10 0\", \"11 0\", \"12 4\"} (* ... 20 terms total *)\
+\>", "Output"]
+}, Open  ]],
+
+Cell["See Also", "SeeAlsoSection"],
+
+Cell["OEISFunction  \[FilledSmallSquare]  OEISImport  \[FilledSmallSquare]  \
+OEISURL", "SeeAlso"]
+},
+WindowTitle->"OEISbFile",
+TaggingRules->Association["Paclet" -> "OEIS"],
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Reference.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[581, 21, 31, 0, 70, "ObjectName",ExpressionUUID->"b23cfa73-2143-4481-b876-3f03acd9330f"],
+Cell[615, 23, 312, 5, 70, "Usage",ExpressionUUID->"8e08e11f-0549-4cb9-b7ca-5df93479be2b"],
+Cell[CellGroupData[{
+Cell[952, 32, 40, 0, 70, "ExampleSection",ExpressionUUID->"d7855551-1e35-4c1d-a51c-d54523f18322"],
+Cell[995, 34, 260, 5, 70, "Input",ExpressionUUID->"7fde5bbf-5ad7-4628-87c7-7b6637fb5f42"],
+Cell[1258, 41, 164, 3, 70, "Output",ExpressionUUID->"2f13c830-2187-484d-a405-44bdf3134975"]
+}, Open  ]],
+Cell[1437, 47, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"22207ffb-0287-4898-8846-68abecd9a107"],
+Cell[1474, 49, 98, 1, 70, "SeeAlso",ExpressionUUID->"9bca9cbb-c6cd-4b19-af7a-8e1570dbbd9d"]
+}
+]
+*)
+
+(* End of internal cache information *)

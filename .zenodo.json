@@ -1,0 +1,35 @@
+{
+  "title": "OEIS.m: A Wolfram Language package for the On-Line Encyclopedia of Integer Sequences",
+  "description": "Retrieve, export and generate b-files for OEIS sequence data through the official JSON API, from the Wolfram Language. Installable as a paclet; see README.md and the tutorial at https://enriqueph.github.io/OEIS-Mathematica/ for usage.",
+  "creators": [
+    {
+      "name": "Pérez Herrero, Enrique",
+      "affiliation": "Independent"
+    }
+  ],
+  "license": "GPL-3.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "keywords": [
+    "OEIS",
+    "integer sequences",
+    "number theory",
+    "Wolfram Language",
+    "Mathematica",
+    "paclet"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isDocumentedBy",
+      "identifier": "https://oeis.org/wiki/User:Enrique_P%C3%A9rez_Herrero/OEIS_Package",
+      "resource_type": "publication-other",
+      "scheme": "url"
+    },
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://enriqueph.github.io/OEIS-Mathematica/",
+      "resource_type": "publication-other",
+      "scheme": "url"
+    }
+  ]
+}

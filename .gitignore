@@ -27,3 +27,10 @@
 Thumbs.db
 README.html
 
+# Branding assets are checked in on purpose, despite the blanket
+# image-extension ignores above.
+!Assets/*.png
+
+# Local paclet build output (see DevTools/BuildPaclet.wls).
+/build/
+

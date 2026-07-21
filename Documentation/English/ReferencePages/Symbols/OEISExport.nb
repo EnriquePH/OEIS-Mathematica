@@ -1,0 +1,62 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1751,         53]
+NotebookOptionsPosition[      1075,         36]
+NotebookOutlinePosition[      1415,         51]
+CellTagsIndexPosition[      1372,         48]
+WindowTitle->OEISExport
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["OEISExport", "ObjectName"],
+
+Cell["\<\
+OEISExport[id,filename] exports OEIS content for id to filename, in a format \
+chosen from the file extension: \".m\"/\".gp\" (usage message code), \
+\".txt\"/\".csv\"/\".tsv\"/\".dat\" (data), image formats, \".bib\" (BibTeX \
+citation), \".html\" and \".wiki\" (MediaWiki citation).\
+\>", "Usage"],
+
+Cell["Basic Examples", "ExampleSection"],
+
+Cell["See Also", "SeeAlsoSection"],
+
+Cell["OEISImport  \[FilledSmallSquare]  OEISbFile", "SeeAlso"]
+},
+WindowTitle->"OEISExport",
+TaggingRules->Association["Paclet" -> "OEIS"],
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Reference.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[582, 21, 32, 0, 70, "ObjectName",ExpressionUUID->"24b09f18-3700-4c20-b659-f41b9a575b06"],
+Cell[617, 23, 309, 5, 70, "Usage",ExpressionUUID->"ced152dc-40cf-4eec-a617-51ee074e652c"],
+Cell[929, 30, 40, 0, 70, "ExampleSection",ExpressionUUID->"b0e2495c-bb5b-4f97-b5be-c604aad5b11e"],
+Cell[972, 32, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"ecc70a5c-30cc-4155-874c-b7147ad59200"],
+Cell[1009, 34, 62, 0, 70, "SeeAlso",ExpressionUUID->"80855071-5ee2-4870-a8ff-14c7feb324a0"]
+}
+]
+*)
+
+(* End of internal cache information *)
