@@ -31,6 +31,10 @@ The runnable source for that tutorial is [test/OEISTutorial.wl](test/OEISTutoria
 wolframscript -file test/OEISTutorial.wl
 ```
 
+The original package page, with its own usage examples (including
+`OEISbFile`), is on the OEIS wiki:
+[User:Enrique Pérez Herrero/OEIS Package](https://oeis.org/wiki/User:Enrique_P%C3%A9rez_Herrero/OEIS_Package).
+
 ## Quick start
 
 Load the package in a Wolfram notebook with:

@@ -351,13 +351,24 @@ OEISExport[ID_?OEISValidateIDQ, filename_] := Module[{myfileextension = ToLowerC
   ]
 ];
 
-(* Write a simple b-file with the sequence values for a range of indices. *)
-OEISbFile[ID_?OEISValidateIDQ, VMax_Integer, filename___] := Module[{mybfiledata, mybfilename, mydata, mymindata},
+(* Write a b-file with the sequence values for indices MinData..VMax.
+   If ID[n] is already defined in this session (e.g. the user wrote
+   ID[n_] := ... before calling OEISbFile, as documented on the OEIS
+   wiki), that local definition is used to compute every term up to
+   VMax. Otherwise OEISFunction is used first to preload ID[n] with
+   the data available from OEIS. *)
+OEISbFile[ID_?OEISValidateIDQ, VMax_Integer, filename___] := Module[{mybfile, mybfilename, mydata, mymindata, idsymbol, predefinedQ},
   mymindata = OEISImport[ID, "MinData"];
+  If[!IntegerQ[mymindata], mymindata = 1];
   If[filename === "Null" || filename === "", mybfilename = OEISURL[ID, URL -> False, bFile -> True], mybfilename = filename];
-  OEISFunction[ID, Output -> False];
-  mydata = Select[OEISImport[ID, "Data"], #[[1]] <= VMax && #[[1]] >= mymindata &];
-  If[mydata === $Failed || mydata === {}, Return[$Failed]];
+  idsymbol = Symbol[ID];
+  predefinedQ = DownValues[Evaluate[idsymbol]] =!= {} || OwnValues[Evaluate[idsymbol]] =!= {};
+  If[!predefinedQ, OEISFunction[ID, Output -> False]];
+  mydata = Select[
+    Table[{n, Quiet[idsymbol[n]]}, {n, mymindata, VMax}],
+    NumericQ[#[[2]]] &
+  ];
+  If[mydata === {}, Return[$Failed]];
   mybfile = OpenWrite[mybfilename, BinaryFormat -> True, CharacterEncoding -> "Unicode"];
   WriteString[mybfile, ToString[#[[1]]] <> " " <> ToString[#[[2]]] <> "\n"] & /@ mydata;
   Close[mybfile]

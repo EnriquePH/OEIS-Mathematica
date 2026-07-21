@@ -12,6 +12,8 @@ The runnable version of this tutorial lives at [`test/OEISTutorial.wl`](https://
 wolframscript -file test/OEISTutorial.wl
 ```
 
+The original package page, with its own usage examples, is on the OEIS wiki: [User:Enrique Pérez Herrero/OEIS Package](https://oeis.org/wiki/User:Enrique_P%C3%A9rez_Herrero/OEIS_Package).
+
 ## 1. Load the package
 
 ```wl
