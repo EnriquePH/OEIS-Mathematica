@@ -60,10 +60,12 @@ OEISImport["A000045", "Description"]
 
 `OEISImport[ID, "Data"]` returns `{n, a(n)}` pairs, correctly offset to the sequence's actual starting index (A000045 starts at n = 0, not n = 1):
 
+{% raw %}
 ```wl
 OEISImport["A000045", "Data"][[1 ;; 5]]
 (* {{0, 0}, {1, 1}, {2, 1}, {3, 2}, {4, 3}} *)
 ```
+{% endraw %}
 
 ## 6. Inspect the available range
 
