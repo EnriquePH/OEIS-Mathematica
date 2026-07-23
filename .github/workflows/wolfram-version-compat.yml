@@ -24,6 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: wolframresearch/wolframengine:${{ matrix.version }}
+      # Non-root default user breaks actions/checkout's writes to the
+      # mounted _temp dir. See actions/checkout#956.
+      options: --user root
       env:
         WOLFRAMSCRIPT_ENTITLEMENTID: ${{ secrets.WOLFRAMSCRIPT_ENTITLEMENTID }}
     strategy:

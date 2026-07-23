@@ -8,19 +8,19 @@ on:
 
 jobs:
   test:
-    name: Test (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+    name: Test
+    runs-on: ubuntu-latest
+    container:
+      image: wolframresearch/wolframengine:latest
+      # The image's default user isn't root and doesn't match the
+      # runner's UID, which breaks actions/checkout's writes to the
+      # mounted _temp dir (EACCES on save_state/issueFileCommand).
+      # See https://github.com/actions/checkout/issues/956.
+      options: --user root
+      env:
+        WOLFRAMSCRIPT_ENTITLEMENTID: ${{ secrets.WOLFRAMSCRIPT_ENTITLEMENTID }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up wolframscript
-        uses: WolframResearch/wolframscript-action@v1
-        with:
-          entitlementId: ${{ secrets.WOLFRAMSCRIPT_ENTITLEMENTID }}
 
       - name: Run offline tests (ID validation, URL building)
         run: wolframscript -file Tests/RunTests.wls --offline
@@ -35,13 +35,13 @@ jobs:
   syntax-check:
     name: PacletInfo.wl / source syntax
     runs-on: ubuntu-latest
+    container:
+      image: wolframresearch/wolframengine:latest
+      options: --user root
+      env:
+        WOLFRAMSCRIPT_ENTITLEMENTID: ${{ secrets.WOLFRAMSCRIPT_ENTITLEMENTID }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up wolframscript
-        uses: WolframResearch/wolframscript-action@v1
-        with:
-          entitlementId: ${{ secrets.WOLFRAMSCRIPT_ENTITLEMENTID }}
 
       - name: Load PacletInfo.wl and Kernel/OEIS.wl
         run: |
