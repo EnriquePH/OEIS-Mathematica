@@ -1,15 +1,13 @@
 # OEIS-Mathematica
 
-<img src="Assets/A001615-plot.png" alt="Phyllotaxis plot of OEIS sequence A001615 (Dedekind psi function), plotted live with OEIS.m" width="120" height="120" align="right">
+<img src="Assets/OEIS-Handbook-cover-art.png" alt="Phyllotaxis plot of OEIS sequence A001615 (Dedekind psi function), plotted live with OEIS.m" width="80" height="80" align="right">
 
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![Wolfram Language](https://img.shields.io/badge/Wolfram-Language%2011%2F13%2F14-ff6b6b.svg)
 ![Package](https://img.shields.io/badge/Package-OEIS.m-success.svg)
 ![Paclet](https://img.shields.io/badge/Paclet-4.0.0-9c27b0.svg)
 [![Mathics offline tests](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/mathics-offline.yml/badge.svg)](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/mathics-offline.yml)
-<!-- Once this repo is linked on Zenodo and a release has been cut (see
-     Citation below), replace this line with the real badge, e.g.:
-     [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.NNNNNNN.svg)](https://doi.org/10.5281/zenodo.NNNNNNN) -->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21516520.svg)](https://doi.org/10.5281/zenodo.21516520)
 
 Multipurpose package for using OEIS data from Wolfram Language.
 
@@ -159,15 +157,8 @@ GitHub web UI) after cutting the release.
 ## Citation
 
 If you use this package in a project or publication, please cite it using the
-metadata in [CITATION.cff](CITATION.cff).
-
-To get a citable DOI through [Zenodo](https://zenodo.org/): sign in to Zenodo
-with your GitHub account, enable this repository under
-[Zenodo > GitHub settings](https://zenodo.org/account/settings/github/), then
-cut a GitHub Release here. Zenodo archives it automatically and mints a DOI;
-`.zenodo.json` already provides the metadata it will use. Once minted, add
-the DOI to `CITATION.cff` (see the commented `identifiers:` block there) and
-swap in the real badge at the top of this file.
+metadata in [CITATION.cff](CITATION.cff), which includes the archived
+[Zenodo](https://zenodo.org/) DOI: [10.5281/zenodo.21516520](https://doi.org/10.5281/zenodo.21516520).
 
 ## Contributing
 

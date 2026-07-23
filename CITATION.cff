@@ -17,9 +17,7 @@ keywords:
   - Wolfram Language
   - Mathematica
 description: "Wolfram Language package for working with OEIS sequence data through the official JSON API."
-# Once this repository is linked on Zenodo (see README > Citation) and a
-# release has been archived there, add the minted concept DOI here, e.g.:
-# identifiers:
-#   - type: doi
-#     value: 10.5281/zenodo.NNNNNNN
-#     description: "Concept DOI, always resolves to the latest release."
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.21516520
+    description: "Concept DOI, always resolves to the latest release."
