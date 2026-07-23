@@ -18,6 +18,12 @@ on:
     # First of every month, to catch drift even with no local changes.
     - cron: '0 6 1 * *'
 
+env:
+  # Older wolframengine images' glibc predates what actions' default
+  # Node 24 runtime requires (GLIBC_2.28 not found), so pin the
+  # runner back to Node 20 for running actions in that container.
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+
 jobs:
   compat:
     name: WL ${{ matrix.version }}
