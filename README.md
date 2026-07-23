@@ -1,13 +1,12 @@
 # OEIS-Mathematica
 
-<img src="Assets/Icon128.png" alt="OEIS package icon" width="96" height="96" align="right">
+<img src="Assets/A001615-plot.png" alt="Phyllotaxis plot of OEIS sequence A001615 (Dedekind psi function), plotted live with OEIS.m" width="120" height="120" align="right">
 
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![Wolfram Language](https://img.shields.io/badge/Wolfram-Language%2011%2F13%2F14-ff6b6b.svg)
 ![Package](https://img.shields.io/badge/Package-OEIS.m-success.svg)
 ![Paclet](https://img.shields.io/badge/Paclet-4.0.0-9c27b0.svg)
-[![CI](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/ci.yml/badge.svg)](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/ci.yml)
-[![Wolfram version compatibility](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/wolfram-version-compat.yml/badge.svg)](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/wolfram-version-compat.yml)
+[![Mathics offline tests](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/mathics-offline.yml/badge.svg)](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/mathics-offline.yml)
 <!-- Once this repo is linked on Zenodo and a release has been cut (see
      Citation below), replace this line with the real badge, e.g.:
      [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.NNNNNNN.svg)](https://doi.org/10.5281/zenodo.NNNNNNN) -->
@@ -118,11 +117,14 @@ wolframscript -file Tests/RunTests.wls            # everything, incl. live OEIS 
 wolframscript -file Tests/RunTests.wls --offline   # ID validation / URL building only
 ```
 
-CI (`.github/workflows/ci.yml`) runs the offline suite on Linux, macOS and
-Windows on every push and pull request, and separately runs the full suite
-without failing the build on OEIS server hiccups. A companion workflow
-(`.github/workflows/wolfram-version-compat.yml`) runs the offline suite
-against several Wolfram Engine versions via Docker.
+CI (`.github/workflows/mathics-offline.yml`) runs the ID-validation/URL-building
+subset on every push and pull request using [Mathics3](https://mathics.org), a
+free, open-source Wolfram Language implementation, so it needs no Wolfram
+Engine license. It runs `Tests/OfflineTests.mathics.wls`, a hand-ported mirror
+of `Tests/OfflineTests.wlt` (Mathics3 doesn't implement `VerificationTest`/
+`TestReport` or the live JSON API path, so the real `.wlt` suite and anything
+network-dependent still needs a licensed `wolframscript` to run, e.g. locally
+or in your own CI with `WOLFRAMSCRIPT_ENTITLEMENTID` configured).
 
 ## Benchmarks
 
@@ -141,9 +143,9 @@ wolframscript -file DevTools/BuildPaclet.wls
 ```
 
 Produces `build/OEIS-4.0.0.paclet`. Requires Wolfram Language 12.1+ (older
-engines don't understand the `PacletInfo.wl` association format). GitHub
-Releases get this built and attached automatically by
-`.github/workflows/release.yml`.
+engines don't understand the `PacletInfo.wl` association format). Attach the
+built archive to a GitHub Release manually with `gh release upload` (or the
+GitHub web UI) after cutting the release.
 
 ## Project status
 

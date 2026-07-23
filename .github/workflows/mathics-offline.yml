@@ -1,0 +1,44 @@
+name: Mathics offline tests
+
+# Runs the offline subset of the test suite -- ID validation and URL
+# building, nothing that touches the network -- using Mathics3, a free,
+# open-source, pip-installable implementation of the Wolfram Language
+# (https://mathics.org). Unlike every other workflow this repo has had,
+# this one needs no Wolfram Engine license or WOLFRAMSCRIPT_ENTITLEMENTID
+# secret at all.
+#
+# Trade-off: Mathics3 doesn't implement VerificationTest/TestReport, and
+# has no working Import/RunProcess path for the live OEIS JSON API, so it
+# can only run Tests/OfflineTests.mathics.wls (a hand-ported mirror of
+# Tests/OfflineTests.wlt) -- not the real .wlt suite, and nothing that
+# hits the network. Keep that file in sync by hand if OfflineTests.wlt
+# changes.
+#
+# Exit[] does not propagate to the process exit code under `mathics
+# -f`/`--script`, so pass/fail is read from a fixed marker line the
+# script prints, via grep, rather than the process exit code.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  offline-tests:
+    name: Offline tests (Mathics3)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Mathics3
+        run: pip install Mathics3
+
+      - name: Run offline tests
+        run: |
+          mathics -f Tests/OfflineTests.mathics.wls | tee mathics-output.txt
+          grep -q "MATHICS_OFFLINE_TESTS: PASSED" mathics-output.txt
