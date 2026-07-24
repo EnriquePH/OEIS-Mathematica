@@ -1,1 +1,0 @@
-A000045::usage="A000045[n]: Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.";
