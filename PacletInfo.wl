@@ -6,7 +6,7 @@ PacletObject[<|
   "Creator" -> "Enrique P\[EAcute]rez Herrero",
   "Publisher" -> "Enrique P\[EAcute]rez Herrero",
   "License" -> "GPL-3.0",
-  "Version" -> "4.0.0",
+  "Version" -> "3.1.0",
   "WolframVersion" -> "12.1+",
   "Icon" -> "Assets/Icon.png",
   "Keywords" -> {"OEIS", "integer sequences", "number theory", "b-file"},

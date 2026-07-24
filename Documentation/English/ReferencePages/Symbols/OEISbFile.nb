@@ -66,15 +66,15 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[581, 21, 31, 0, 70, "ObjectName",ExpressionUUID->"b23cfa73-2143-4481-b876-3f03acd9330f"],
-Cell[615, 23, 312, 5, 70, "Usage",ExpressionUUID->"8e08e11f-0549-4cb9-b7ca-5df93479be2b"],
+Cell[581, 21, 31, 0, 70, "ObjectName",ExpressionUUID->"165e80de-f503-49bc-9f6f-0c2b715567f6"],
+Cell[615, 23, 312, 5, 70, "Usage",ExpressionUUID->"712fd98c-03bb-4b8e-8538-8977b1081c2a"],
 Cell[CellGroupData[{
-Cell[952, 32, 40, 0, 70, "ExampleSection",ExpressionUUID->"d7855551-1e35-4c1d-a51c-d54523f18322"],
-Cell[995, 34, 260, 5, 70, "Input",ExpressionUUID->"7fde5bbf-5ad7-4628-87c7-7b6637fb5f42"],
-Cell[1258, 41, 164, 3, 70, "Output",ExpressionUUID->"2f13c830-2187-484d-a405-44bdf3134975"]
+Cell[952, 32, 40, 0, 70, "ExampleSection",ExpressionUUID->"98c55dae-5299-4525-b8aa-1fde56f2399e"],
+Cell[995, 34, 260, 5, 70, "Input",ExpressionUUID->"d5b777b8-d1e6-4f8b-9f23-7927a6779724"],
+Cell[1258, 41, 164, 3, 70, "Output",ExpressionUUID->"c36eee5b-b790-4383-ade5-7f4e81985a71"]
 }, Open  ]],
-Cell[1437, 47, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"22207ffb-0287-4898-8846-68abecd9a107"],
-Cell[1474, 49, 98, 1, 70, "SeeAlso",ExpressionUUID->"9bca9cbb-c6cd-4b19-af7a-8e1570dbbd9d"]
+Cell[1437, 47, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"c041d947-89a3-4db1-a370-ccf3ec5b315f"],
+Cell[1474, 49, 98, 1, 70, "SeeAlso",ExpressionUUID->"22b540de-7c08-4f22-baf3-0af50f223a0f"]
 }
 ]
 *)

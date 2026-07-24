@@ -1,0 +1,71 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1890,         62]
+NotebookOptionsPosition[      1002,         41]
+NotebookOutlinePosition[      1341,         56]
+CellTagsIndexPosition[      1298,         53]
+WindowTitle->OEISGraph
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["OEISGraph", "ObjectName"],
+
+Cell["\<\
+OEISGraph[id] returns a Graph of id and the sequences OEISRelated finds for \
+it, star-shaped around id.\
+\>", "Usage"],
+
+Cell[CellGroupData[{
+
+Cell["Basic Examples", "ExampleSection"],
+
+Cell["g = OEISGraph[\"A000045\"]; {VertexCount[g], EdgeCount[g]}", "Input"],
+
+Cell["{90, 89}", "Output"]
+}, Open  ]],
+
+Cell["See Also", "SeeAlsoSection"],
+
+Cell["OEISRelated", "SeeAlso"]
+},
+WindowTitle->"OEISGraph",
+TaggingRules->Association["Paclet" -> "OEIS"],
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Reference.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[581, 21, 31, 0, 70, "ObjectName",ExpressionUUID->"31434e9e-243c-4fa4-bf70-fef4291fbb45"],
+Cell[615, 23, 129, 3, 70, "Usage",ExpressionUUID->"b054383d-316d-4ed4-9b34-4e4ec266a933"],
+Cell[CellGroupData[{
+Cell[769, 30, 40, 0, 70, "ExampleSection",ExpressionUUID->"ee7ba2a8-6801-4a60-9e51-9f2fb4dd960e"],
+Cell[812, 32, 75, 0, 70, "Input",ExpressionUUID->"65b15d11-aecb-4d69-b9a3-e304e3dc9164"],
+Cell[890, 34, 26, 0, 70, "Output",ExpressionUUID->"46be7ddf-c550-4f42-89ec-db61cb9f213a"]
+}, Open  ]],
+Cell[931, 37, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"4cc6bde3-8f8c-4541-b926-90d2c6a1308e"],
+Cell[968, 39, 30, 0, 70, "SeeAlso",ExpressionUUID->"63b565b0-07f6-4268-9120-84bf040e66a3"]
+}
+]
+*)
+
+(* End of internal cache information *)

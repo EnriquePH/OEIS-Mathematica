@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      4474,        109]
-NotebookOptionsPosition[      2040,         75]
-NotebookOutlinePosition[      2331,         89]
-CellTagsIndexPosition[      2288,         86]
+NotebookDataLength[      7056,        164]
+NotebookOptionsPosition[      3039,        114]
+NotebookOutlinePosition[      3330,        128]
+CellTagsIndexPosition[      3287,        125]
 WindowTitle->OEIS Package
 WindowFrame->Normal*)
 
@@ -69,6 +69,45 @@ Cell["OEISbFile", "GuideFunction"],
 Cell["write a b-file, using a locally defined id[n] when available", \
 "GuideText"],
 
+Cell["Search and discover", "GuideFunctionsSubsection"],
+
+Cell["OEISSearch", "GuideFunction"],
+
+Cell["search OEIS by free text or by a sequence of numbers", "GuideText"],
+
+Cell["OEISRelated", "GuideFunction"],
+
+Cell["the sequences OEIS cross-references from an entry", "GuideText"],
+
+Cell["OEISGraph", "GuideFunction"],
+
+Cell["a Graph of a sequence and the sequences it cross-references", \
+"GuideText"],
+
+Cell["OEISRandom", "GuideFunction"],
+
+Cell["the Entry Association for a randomly chosen sequence", "GuideText"],
+
+Cell["Structured data and citations", "GuideFunctionsSubsection"],
+
+Cell["OEISData", "GuideFunction"],
+
+Cell["\<\
+the full entry for a sequence as an Association, e.g. for Dataset\
+\>", "GuideText"],
+
+Cell["OEISCitation", "GuideFunction"],
+
+Cell["\<\
+a BibTeX or MediaWiki citation string, without writing to a file\
+\>", "GuideText"],
+
+Cell["OEISSequence", "GuideFunction"],
+
+Cell["\<\
+a lazy object wrapping one ID, with Plot/Values/Formula/... properties\
+\>", "GuideText"],
+
 Cell["Tutorials", "RelatedTutorialsSection"],
 
 Cell["OEIS Package: A Tutorial", "RelatedTutorials"]
@@ -88,29 +127,45 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[584, 21, 34, 0, 70, "GuideTitle",ExpressionUUID->"0ab4f744-b42e-4f05-8581-3fc04c3a95ad"],
-Cell[621, 23, 161, 3, 70, "GuideAbstract",ExpressionUUID->"4bb449c1-f7de-4a81-9284-8366206a0d8d"],
-Cell[785, 28, 66, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"f0910b9e-80fa-4c96-a86e-b49f6ed48e36"],
-Cell[854, 30, 40, 0, 70, "GuideFunction",ExpressionUUID->"d4d693c3-5c2f-4507-bf73-955d06f26761"],
-Cell[897, 32, 74, 0, 70, "GuideText",ExpressionUUID->"17c026c8-322a-40a6-8d0d-c7a47b38b888"],
-Cell[974, 34, 32, 0, 70, "GuideFunction",ExpressionUUID->"7d685cd5-93c7-4978-96e4-7b86c0330676"],
-Cell[1009, 36, 51, 0, 70, "GuideText",ExpressionUUID->"c8d4033e-5a3c-4943-ae21-a38fd97948db"],
-Cell[1063, 38, 38, 0, 70, "GuideFunction",ExpressionUUID->"9356261c-592a-43c3-b279-fdc76381749d"],
-Cell[1104, 40, 61, 0, 70, "GuideText",ExpressionUUID->"1b17d1c4-3464-4c5d-9cd9-c9b070a85bf9"],
-Cell[1168, 42, 51, 0, 70, "GuideFunction",ExpressionUUID->"61d5638d-6b09-4f3c-a79b-e6862f8b4753"],
-Cell[1222, 44, 68, 0, 70, "GuideText",ExpressionUUID->"7925edb1-10de-41b7-8f23-58da4c8228ce"],
-Cell[1293, 46, 58, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"9a88d175-5ada-408f-acc8-c17ce272a1a7"],
-Cell[1354, 48, 35, 0, 70, "GuideFunction",ExpressionUUID->"b7dc2f5e-0bee-4e09-a088-933d7c200665"],
-Cell[1392, 50, 94, 2, 70, "GuideText",ExpressionUUID->"b4272087-e995-4ca4-9165-cacef18dd85f"],
-Cell[1489, 54, 37, 0, 70, "GuideFunction",ExpressionUUID->"5bc4817f-19a7-4e33-8ef5-5ed0f98e800f"],
-Cell[1529, 56, 75, 0, 70, "GuideText",ExpressionUUID->"75fc6771-e968-4af0-9c1c-37900b6679ea"],
-Cell[1607, 58, 61, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"bd155781-c17e-4521-be8c-b02c88d2c57b"],
-Cell[1671, 60, 35, 0, 70, "GuideFunction",ExpressionUUID->"259abfaf-d9bc-4416-86f0-5ce1db2cd634"],
-Cell[1709, 62, 102, 2, 70, "GuideText",ExpressionUUID->"9667cb9c-6f2e-4b7a-b57b-386945d2cfc3"],
-Cell[1814, 66, 34, 0, 70, "GuideFunction",ExpressionUUID->"66f77b72-8678-488d-9cd5-8be1da4f87b6"],
-Cell[1851, 68, 83, 1, 70, "GuideText",ExpressionUUID->"c46414a8-39fe-4250-8909-d72401232c7c"],
-Cell[1937, 71, 44, 0, 70, "RelatedTutorialsSection",ExpressionUUID->"345be500-c75c-4d8f-9f18-a2f569331a09"],
-Cell[1984, 73, 52, 0, 70, "RelatedTutorials",ExpressionUUID->"a7286bf5-23b6-4b2a-9bb2-bd1da3ad5856"]
+Cell[584, 21, 34, 0, 70, "GuideTitle",ExpressionUUID->"95f1216c-6d08-4372-9151-d40a666bf795"],
+Cell[621, 23, 161, 3, 70, "GuideAbstract",ExpressionUUID->"c9a2ebe2-7447-4399-971e-9147f3c524f6"],
+Cell[785, 28, 66, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"509912df-62b6-40d7-b8f6-56031c61d56f"],
+Cell[854, 30, 40, 0, 70, "GuideFunction",ExpressionUUID->"46073793-0d61-4905-bd98-9d0a55fc2782"],
+Cell[897, 32, 74, 0, 70, "GuideText",ExpressionUUID->"8d774ebd-79dd-4c34-aa4c-45914938e336"],
+Cell[974, 34, 32, 0, 70, "GuideFunction",ExpressionUUID->"df0380cf-8042-480d-85c0-880a64f1dd9d"],
+Cell[1009, 36, 51, 0, 70, "GuideText",ExpressionUUID->"61ca8023-65fa-4177-8e0f-7399b1ac1e84"],
+Cell[1063, 38, 38, 0, 70, "GuideFunction",ExpressionUUID->"7f3272b7-fe8b-4f95-9895-0babbb68b859"],
+Cell[1104, 40, 61, 0, 70, "GuideText",ExpressionUUID->"046840d5-72cf-47fc-b1fa-9416bccad81f"],
+Cell[1168, 42, 51, 0, 70, "GuideFunction",ExpressionUUID->"8241c274-6ff0-4cbc-a062-3e7883016169"],
+Cell[1222, 44, 68, 0, 70, "GuideText",ExpressionUUID->"03432b50-5ea2-4de8-89ef-51740a976778"],
+Cell[1293, 46, 58, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"67183bf0-f273-4ee5-b5cb-1048d223d2b7"],
+Cell[1354, 48, 35, 0, 70, "GuideFunction",ExpressionUUID->"37ee0018-1ce1-4baa-9c94-7e6b706cbdd7"],
+Cell[1392, 50, 94, 2, 70, "GuideText",ExpressionUUID->"25bda0c5-2fb6-4dd6-bab1-7c0ff82b1e37"],
+Cell[1489, 54, 37, 0, 70, "GuideFunction",ExpressionUUID->"8f4ba3b9-3ea4-4dcb-8e8b-e3cb55345941"],
+Cell[1529, 56, 75, 0, 70, "GuideText",ExpressionUUID->"1d9bf205-c0bd-4ba4-a88e-1311f23f1f46"],
+Cell[1607, 58, 61, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"5875ef99-2930-40c9-b44f-c6a80902cb45"],
+Cell[1671, 60, 35, 0, 70, "GuideFunction",ExpressionUUID->"699d7077-e86d-4a17-b608-628f2b7e4c17"],
+Cell[1709, 62, 102, 2, 70, "GuideText",ExpressionUUID->"40cfc063-15bc-42b6-9fc4-7f37819873bf"],
+Cell[1814, 66, 34, 0, 70, "GuideFunction",ExpressionUUID->"2b1ea810-a8be-479a-b3b7-64abd67da809"],
+Cell[1851, 68, 83, 1, 70, "GuideText",ExpressionUUID->"a368c621-7222-4dee-aebd-9026ef89cc7c"],
+Cell[1937, 71, 55, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"55f97741-5b76-46f1-a760-cf7fcc4c8c5b"],
+Cell[1995, 73, 35, 0, 70, "GuideFunction",ExpressionUUID->"06d615c9-e7c2-452c-9090-a0a77ab74873"],
+Cell[2033, 75, 73, 0, 70, "GuideText",ExpressionUUID->"8a859fd1-8b63-434b-b55c-a6b80058a80d"],
+Cell[2109, 77, 36, 0, 70, "GuideFunction",ExpressionUUID->"8546b65d-de63-4476-8b48-7900e0fe0e1d"],
+Cell[2148, 79, 70, 0, 70, "GuideText",ExpressionUUID->"fd28738d-f07f-4160-914c-13203c4f6162"],
+Cell[2221, 81, 34, 0, 70, "GuideFunction",ExpressionUUID->"0b13b1b7-2866-4e9f-b257-e8149d95e34a"],
+Cell[2258, 83, 82, 1, 70, "GuideText",ExpressionUUID->"a0d5feab-cd32-4f7d-bb81-1f65ad3c114b"],
+Cell[2343, 86, 35, 0, 70, "GuideFunction",ExpressionUUID->"bcb89ec5-fc97-4676-abb1-a7544a7da911"],
+Cell[2381, 88, 73, 0, 70, "GuideText",ExpressionUUID->"a2ebd006-7c69-46cd-b906-48d1d5ecd950"],
+Cell[2457, 90, 65, 0, 70, "GuideFunctionsSubsection",ExpressionUUID->"20308e96-8d05-4fbf-a685-eca2ac2c2a9b"],
+Cell[2525, 92, 33, 0, 70, "GuideFunction",ExpressionUUID->"19fa16b0-d30d-4811-b306-e8d426329ad2"],
+Cell[2561, 94, 94, 2, 70, "GuideText",ExpressionUUID->"3f798d28-da3d-429b-941a-0af8d3843304"],
+Cell[2658, 98, 37, 0, 70, "GuideFunction",ExpressionUUID->"5c6abeb0-57e9-4734-bce7-93326893495d"],
+Cell[2698, 100, 93, 2, 70, "GuideText",ExpressionUUID->"de7441a7-f0f8-4717-a62a-8b79c3810edf"],
+Cell[2794, 104, 37, 0, 70, "GuideFunction",ExpressionUUID->"b8af3378-d71e-4701-9711-e19aca2cbb0e"],
+Cell[2834, 106, 99, 2, 70, "GuideText",ExpressionUUID->"0b402a69-733e-41d2-8925-77023815bef7"],
+Cell[2936, 110, 44, 0, 70, "RelatedTutorialsSection",ExpressionUUID->"084f2ca1-7203-49a8-973b-2481d2edfa6a"],
+Cell[2983, 112, 52, 0, 70, "RelatedTutorials",ExpressionUUID->"6a0444d1-ba28-495c-9a04-d67e8736b4f3"]
 }
 ]
 *)

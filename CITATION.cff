@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: Pérez Herrero
     given-names: Enrique
-version: "4.0.0"
+version: "3.1.0"
 date-released: "2026-07-21"
 url: "https://github.com/EnriquePH/OEIS-Mathematica"
 repository-code: "https://github.com/EnriquePH/OEIS-Mathematica"

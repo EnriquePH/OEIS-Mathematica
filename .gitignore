@@ -34,3 +34,9 @@ README.html
 # Local paclet build output (see DevTools/BuildPaclet.wls).
 /build/
 
+# Regenerated each run by test/OEISTutorial.wl -- not source.
+/test/A000045.m
+
+# The Quarto handbook (source + rendered PDF) lives one level up, in
+# the project root next to this repo checkout -- not inside the repo.
+

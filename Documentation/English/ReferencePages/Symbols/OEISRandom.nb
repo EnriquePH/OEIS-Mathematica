@@ -1,0 +1,74 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1946,         65]
+NotebookOptionsPosition[      1056,         44]
+NotebookOutlinePosition[      1396,         59]
+CellTagsIndexPosition[      1353,         56]
+WindowTitle->OEISRandom
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["OEISRandom", "ObjectName"],
+
+Cell["\<\
+OEISRandom[] returns the Entry Association for a randomly chosen OEIS \
+sequence.\
+\>", "Usage"],
+
+Cell[CellGroupData[{
+
+Cell["Basic Examples", "ExampleSection"],
+
+Cell["Keys[OEISRandom[]]", "Input"],
+
+Cell["\<\
+{\"ID\", \"Description\", \"Author\", \"Date\", \"Offset\", \"Data\", \
+\"Formula\"}\
+\>", "Output"]
+}, Open  ]],
+
+Cell["See Also", "SeeAlsoSection"],
+
+Cell["OEISImport  \[FilledSmallSquare]  OEISData", "SeeAlso"]
+},
+WindowTitle->"OEISRandom",
+TaggingRules->Association["Paclet" -> "OEIS"],
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Reference.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[582, 21, 32, 0, 70, "ObjectName",ExpressionUUID->"cc57f592-241b-4c50-bc1b-9f966803a356"],
+Cell[617, 23, 106, 3, 70, "Usage",ExpressionUUID->"b83b5e3e-9ec9-441e-84f9-3a2d4d8e0362"],
+Cell[CellGroupData[{
+Cell[748, 30, 40, 0, 70, "ExampleSection",ExpressionUUID->"69819329-5769-4c9e-8d6f-8364024882b6"],
+Cell[791, 32, 35, 0, 70, "Input",ExpressionUUID->"9a259de0-24d1-4919-83db-8ade207ff6dc"],
+Cell[829, 34, 110, 3, 70, "Output",ExpressionUUID->"41030ab7-81aa-41ba-9a19-66021d88e474"]
+}, Open  ]],
+Cell[954, 40, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"ad916db0-6719-44c9-bd01-3ddb4674b9fc"],
+Cell[991, 42, 61, 0, 70, "SeeAlso",ExpressionUUID->"84639249-8df9-4a27-99f4-3690b4877d86"]
+}
+]
+*)
+
+(* End of internal cache information *)

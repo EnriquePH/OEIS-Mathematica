@@ -7,7 +7,13 @@
 *)
 
 Print["Loading OEIS package..."];
-Needs["OEIS`"];
+(* Load relative to this script's own location, not via ambient Needs
+   resolution -- a stale OEIS.wl elsewhere on $Path (e.g. a leftover
+   copy in ~/.Mathematica/Applications) would otherwise silently
+   shadow the current repository source, defeating the point of this
+   script doubling as an integration test. Mirrors Tests/RunTests.wls. *)
+root = DirectoryName[DirectoryName[AbsoluteFileName[First[$ScriptCommandLine]]]];
+Get[FileNameJoin[{root, "Kernel", "OEIS.wl"}]];
 
 Print["\n1) Validate an OEIS identifier"];
 Print[OEIS`OEISValidateIDQ["A000045"]];
@@ -27,5 +33,28 @@ Print[{OEIS`OEISImport["A000045", "MinData"], OEIS`OEISImport["A000045", "MaxDat
 Print["\n6) Export a small help file"];
 OEIS`OEISExport["A000045", FileNameJoin[{"test", "A000045.m"}]];
 Print["Generated test/A000045.m"];
+
+Print["\n7) Search OEIS by free text and by a sequence of numbers"];
+Print[OEIS`OEISSearch["prime gaps"][[1]]["ID"]];
+Print[First[OEIS`OEISSearch[{1, 1, 2, 3, 5, 8, 13}]]["ID"]];
+
+Print["\n8) Related sequences and a citation string"];
+Print[OEIS`OEISRelated["A000045"][[1 ;; 5]]];
+Print[OEIS`OEISCitation["A000045", "Wiki"]];
+
+Print["\n9) The full entry as an Association"];
+Print[Keys[OEIS`OEISData["A000045"]]];
+
+Print["\n10) The OEISSequence object"];
+seq = OEIS`OEISSequence["A000045"];
+Print[seq["Values"][[1 ;; 10]]];
+Print[seq["Keywords"]];
+
+Print["\n11) A graph of related sequences"];
+g = OEIS`OEISGraph["A000045"];
+Print[{VertexCount[g], EdgeCount[g]}];
+
+Print["\n12) A random sequence"];
+Print[Keys[OEIS`OEISRandom[]]];
 
 Print["\nTutorial completed."];

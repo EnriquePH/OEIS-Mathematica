@@ -1,0 +1,81 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2514,         72]
+NotebookOptionsPosition[      1435,         49]
+NotebookOutlinePosition[      1777,         64]
+CellTagsIndexPosition[      1734,         61]
+WindowTitle->OEISSequence
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["OEISSequence", "ObjectName"],
+
+Cell["\<\
+OEISSequence[id] represents an OEIS sequence. OEISSequence[id][\"property\"] \
+accesses \"Values\" (just the a(n) values), \"Data\", \"Plot\", \"Description\
+\", \"Author\", \"Date\", \"Offset\", \"Formula\", \"Keywords\", \"References\
+\", \"Related\", \"Graph\", \"Citation\", \"URL\" or \"Entry\". Nothing is \
+fetched until a property is accessed.\
+\>", "Usage"],
+
+Cell[CellGroupData[{
+
+Cell["Basic Examples", "ExampleSection"],
+
+Cell["seq = OEISSequence[\"A000045\"]; seq[\"Values\"][[1 ;; 10]]", "Input"],
+
+Cell["{0, 1, 1, 2, 3, 5, 8, 13, 21, 34}", "Output"],
+
+Cell["seq[\"Keywords\"]", "Input"],
+
+Cell["{\"nonn\", \"core\", \"nice\", \"easy\", \"hear\", \"changed\"}", \
+"Output"]
+}, Open  ]],
+
+Cell["See Also", "SeeAlsoSection"],
+
+Cell["OEISImport  \[FilledSmallSquare]  OEISData", "SeeAlso"]
+},
+WindowTitle->"OEISSequence",
+TaggingRules->Association["Paclet" -> "OEIS"],
+FrontEndVersion->"11.2 for Linux x86 (64-bit) (September 10, 2017)",
+StyleDefinitions->"Reference.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[584, 21, 34, 0, 70, "ObjectName",ExpressionUUID->"5dd97698-9ff6-44fe-bd57-49811b6dbc05"],
+Cell[621, 23, 376, 6, 70, "Usage",ExpressionUUID->"b0c503b2-96f7-4895-bb83-cd2f57e7f850"],
+Cell[CellGroupData[{
+Cell[1022, 33, 40, 0, 70, "ExampleSection",ExpressionUUID->"8627f380-94e2-4557-a330-ba841a1330cc"],
+Cell[1065, 35, 76, 0, 70, "Input",ExpressionUUID->"d1101603-aa0c-4bdf-be29-15702c52dea4"],
+Cell[1144, 37, 51, 0, 70, "Output",ExpressionUUID->"2567c40d-6c03-4e04-a8fb-a37778844add"],
+Cell[1198, 39, 34, 0, 70, "Input",ExpressionUUID->"370089d4-788a-4dc4-8e15-f2d240b867f1"],
+Cell[1235, 41, 83, 1, 70, "Output",ExpressionUUID->"34f52686-8b0c-40a4-bfc6-b693514e6a84"]
+}, Open  ]],
+Cell[1333, 45, 34, 0, 70, "SeeAlsoSection",ExpressionUUID->"d75aef63-1385-4972-bab7-47b1d9292947"],
+Cell[1370, 47, 61, 0, 70, "SeeAlso",ExpressionUUID->"01fc6ebb-894c-4296-a271-35feacb64d2a"]
+}
+]
+*)
+
+(* End of internal cache information *)

@@ -4,7 +4,65 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions match
 `PacletInfo.wl` / the `:Package Version:` header in `Kernel/OEIS.wl`.
 
-## [4.0.0] - 2026-07-21
+## [Unreleased]
+
+### Added
+- `OEISImport[ID, "Entry"]`: a single Association bundling every element
+  (`ID`, `Description`, `Author`, `Date`, `Offset`, `Data`, plus a new
+  `Formula` field not otherwise exposed), built from the already-cached
+  `OEISRequest` fetch so it can never drift out of sync with what each
+  element returns standalone.
+- `OEISData[ID]`: a thin wrapper around `OEISImport[ID, "Entry"]`, for
+  e.g. `Dataset[OEISData[ID]]`.
+- `OEISSearch[text]` / `OEISSearch[{n1, n2, ...}]`: search OEIS by free
+  text or by a sequence of numbers (both hit the same JSON endpoint ID
+  lookup already used, just with a different query), returning up to
+  10 results (OEIS's default page size) as a list of Entry
+  Associations.
+- `OEISRelated[ID]`: the IDs OEIS cross-references from the entry's
+  `"xref"` field (its "Cf. A000032, ..." comments), for e.g. building a
+  graph of related sequences.
+- `OEISCitation[ID, format]`: a citation string for one ID in
+  `"BibTeX"` or `"Wiki"` format, without writing to a file. Factored
+  out of `OEISExport`'s `.bib`/`.wiki` branches, which now call it
+  internally instead of duplicating the citation-formatting logic
+  (verified to produce byte-identical file output).
+- `OEISGraph[ID]`: a `Graph` of ID and the sequences OEISRelated finds
+  for it, star-shaped around ID. Uses only the one fetch OEISRelated
+  already makes, not one extra fetch per related sequence.
+- `OEISRandom[]`: the Entry Association for a randomly chosen sequence.
+  OEIS has no dedicated random-sequence endpoint, so this picks a
+  random A-number in a generously padded range and retries on a miss
+  (a withdrawn/merged/not-yet-assigned number).
+- `OEISSequence[ID]`: a lazy object wrapping one ID --
+  `OEISSequence[ID]["Property"]` accesses `"Values"` (just the a(n)
+  values, unlike `"Data"`'s `{n,a(n)}` pairs), `"Data"`, `"Plot"`,
+  `"Description"`, `"Author"`, `"Date"`, `"Offset"`, `"Formula"`,
+  `"Keywords"` (OEIS's classification keywords, e.g. "nonn,core,easy"),
+  `"References"` (literature references -- distinct from
+  `"Related"`/`OEISRelated`'s cross-references to other sequences),
+  `"Related"`, `"Graph"`, `"Citation"`, `"URL"` and `"Entry"`. Nothing
+  is fetched until a property is actually accessed.
+
+### Changed
+- `OEISGetEntry` renamed to `OEISRequest` and made session-memoized
+  (`OEISRequest[id_] := OEISRequest[id] = ...`): `OEISImport`,
+  `OEISFunction`, `OEISExport` and `OEISbFile` each ask for several
+  elements of the same ID in turn, and previously triggered one live
+  network round-trip per element; now the whole session does exactly
+  one fetch per distinct ID. Failed fetches are deliberately left
+  unmemoized, so a transient network or server problem doesn't
+  permanently poison the cache.
+- `OEISReadJSON`/`OEISJSONURL` generalized to `OEISReadJSONQuery`/
+  `OEISQueryURL`, which accept an arbitrary OEIS search query string;
+  ID lookup (`q=id:ID`) is now just the original, still-supported
+  special case, and `OEISSearch` reuses the same fetch-with-curl-
+  fallback machinery.
+- `OEISGetResult` (first result only) is now built on a new
+  `OEISGetResults` (the full result list), which `OEISSearch` also
+  uses.
+
+## [3.1.0] - 2026-07-21
 
 ### Added
 - Converted the repository into an installable Wolfram Language paclet:
@@ -35,12 +93,12 @@ All notable changes to this project are documented here. The format follows
   archived on Zenodo with a DOI (see README for the one-time setup step).
 
 ### Fixed
-- `OEISbFile` (originally shipped in 3.1): now uses a session-local
+- `OEISbFile` (originally shipped in 3.0.1): now uses a session-local
   `id[n_] := ...` definition, if present, to compute every term up to
   `VMax` -- previously it silently ignored that definition and truncated
   output to whatever OEIS already had published, regardless of `VMax`.
 
-## [3.1] - 2026-07-11
+## [3.0.1] - 2026-07-11
 
 ### Fixed
 - JSON result parsing: the live API returns a bare array, not a
@@ -50,7 +108,7 @@ All notable changes to this project are documented here. The format follows
 - Added a `curl`-based fallback for HTTP fetches when Mathematica's
   built-in client is unavailable (see `OEISReadJSONViaCurl`).
 
-## [3.0] - 2026-07-11
+## [3.0.0] - 2026-07-11
 
 ### Changed
 - Rebuilt around the official OEIS JSON API, replacing the earlier

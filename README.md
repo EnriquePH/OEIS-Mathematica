@@ -5,17 +5,17 @@
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 ![Wolfram Language](https://img.shields.io/badge/Wolfram-Language%2011%2F13%2F14-ff6b6b.svg)
 ![Package](https://img.shields.io/badge/Package-OEIS.m-success.svg)
-![Paclet](https://img.shields.io/badge/Paclet-4.0.0-9c27b0.svg)
+![Paclet](https://img.shields.io/badge/Paclet-3.1.0-9c27b0.svg)
 [![Mathics offline tests](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/mathics-offline.yml/badge.svg)](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/mathics-offline.yml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21516520.svg)](https://doi.org/10.5281/zenodo.21516520)
 
 Multipurpose package for using OEIS data from Wolfram Language.
 
-This repository contains OEIS.m version 4.0.0, a streamlined package that uses
+This repository contains OEIS.m version 3.1.0, a streamlined package that uses
 the official OEIS JSON API instead of scraping HTML pages. It is designed to
 work on Wolfram Language 11, 13 and 14, and keeps the public functions of the
 earlier package while being shorter, faster and more robust to future site
-changes. Since 4.0.0 it ships as an installable Wolfram Language **paclet**.
+changes. Since 3.1.0 it ships as an installable Wolfram Language **paclet**.
 
 The package exposes utilities to retrieve sequence descriptions, values, authors,
 dates and export data in several formats such as BibTeX, HTML or plain text.
@@ -35,7 +35,7 @@ dates and export data in several formats such as BibTeX, HTML or plain text.
 **As a paclet** (recommended, WL 12.1+):
 
 ```wl
-PacletInstall["https://github.com/EnriquePH/OEIS-Mathematica/releases/latest/download/OEIS-4.0.0.paclet"]
+PacletInstall["https://github.com/EnriquePH/OEIS-Mathematica/releases/latest/download/OEIS-3.1.0.paclet"]
 Needs["OEIS`"]
 ```
 
@@ -47,7 +47,7 @@ Needs["OEIS`"]
 ```
 
 **Legacy `Get`**, for older Wolfram Language versions or a single-file drop-in
-(this keeps working exactly as before 4.0.0):
+(this keeps working exactly as before 3.1.0):
 
 ```wl
 Get["/path/to/OEIS-Mathematica/OEIS.m"]
@@ -104,6 +104,13 @@ OEISImport["A000045", "Description"]
 - OEISFunction
 - OEISExport
 - OEISbFile
+- OEISData
+- OEISSearch
+- OEISRelated
+- OEISCitation
+- OEISGraph
+- OEISRandom
+- OEISSequence
 
 See the [Function Index](https://enriqueph.github.io/OEIS-Mathematica/functions.html)
 for full signatures, options and links to each reference page.
@@ -140,7 +147,7 @@ captured timings and a chart (regenerate with
 wolframscript -file DevTools/BuildPaclet.wls
 ```
 
-Produces `build/OEIS-4.0.0.paclet`. Requires Wolfram Language 12.1+ (older
+Produces `build/OEIS-3.1.0.paclet`. Requires Wolfram Language 12.1+ (older
 engines don't understand the `PacletInfo.wl` association format). Attach the
 built archive to a GitHub Release manually with `gh release upload` (or the
 GitHub web UI) after cutting the release.

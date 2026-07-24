@@ -154,6 +154,68 @@ MakeReferencePage[
 ];
 
 MakeReferencePage[
+  "OEISData",
+  "OEISData[id] returns the full OEIS entry for id as an Association with keys \"ID\", \"Description\", \"Author\", \"Date\", \"Offset\", \"Data\" and \"Formula\" -- e.g. for Dataset[OEISData[id]].",
+  {},
+  {"Keys[OEISData[\"A000045\"]]"},
+  {"OEISImport", "OEISSequence"}
+];
+
+MakeReferencePage[
+  "OEISSearch",
+  "OEISSearch[text] searches OEIS by free text. OEISSearch[{n1,n2,...}] searches by a sequence of numbers. Both return up to 10 results (OEIS's default page size) as a list of Entry Associations.",
+  {},
+  {
+    "OEISSearch[\"prime gaps\"][[1]][\"ID\"]",
+    "First[OEISSearch[{1, 1, 2, 3, 5, 8, 13}]][\"ID\"]"
+  },
+  {"OEISImport", "OEISRelated"}
+];
+
+MakeReferencePage[
+  "OEISRelated",
+  "OEISRelated[id] returns the IDs of sequences OEIS cross-references from id's entry (its \"Cf. A000032, ...\" comments).",
+  {},
+  {"OEISRelated[\"A000045\"][[1 ;; 5]]"},
+  {"OEISGraph", "OEISImport"}
+];
+
+MakeReferencePage[
+  "OEISCitation",
+  "OEISCitation[id,format] returns a citation string for id in the given format, \"BibTeX\" or \"Wiki\", without writing to a file. OEISExport's \".bib\"/\".wiki\" output is built from this.",
+  {},
+  {"OEISCitation[\"A000045\", \"Wiki\"]"},
+  {"OEISExport", "OEISImport"}
+];
+
+MakeReferencePage[
+  "OEISGraph",
+  "OEISGraph[id] returns a Graph of id and the sequences OEISRelated finds for it, star-shaped around id.",
+  {},
+  {"g = OEISGraph[\"A000045\"]; {VertexCount[g], EdgeCount[g]}"},
+  {"OEISRelated"}
+];
+
+MakeReferencePage[
+  "OEISRandom",
+  "OEISRandom[] returns the Entry Association for a randomly chosen OEIS sequence.",
+  {},
+  {"Keys[OEISRandom[]]"},
+  {"OEISImport", "OEISData"}
+];
+
+MakeReferencePage[
+  "OEISSequence",
+  "OEISSequence[id] represents an OEIS sequence. OEISSequence[id][\"property\"] accesses \"Values\" (just the a(n) values), \"Data\", \"Plot\", \"Description\", \"Author\", \"Date\", \"Offset\", \"Formula\", \"Keywords\", \"References\", \"Related\", \"Graph\", \"Citation\", \"URL\" or \"Entry\". Nothing is fetched until a property is accessed.",
+  {},
+  {
+    "seq = OEISSequence[\"A000045\"]; seq[\"Values\"][[1 ;; 10]]",
+    "seq[\"Keywords\"]"
+  },
+  {"OEISImport", "OEISData"}
+];
+
+MakeReferencePage[
   "OEISTotalNumberOfSequences",
   "OEISTotalNumberOfSequences[] returns an estimate of the number of sequences OEIS currently contains, by checking that OEIS can be reached.",
   {{"URL", "True"}},
@@ -189,6 +251,17 @@ guideNb = Notebook[
     GuideEntry["OEISExport", "export sequence data or citations to .m, .txt, .bib, .html, .wiki, images"],
     GuideEntry["OEISbFile", "write a b-file, using a locally defined id[n] when available"],
 
+    Cell["Search and discover", "GuideFunctionsSubsection"],
+    GuideEntry["OEISSearch", "search OEIS by free text or by a sequence of numbers"],
+    GuideEntry["OEISRelated", "the sequences OEIS cross-references from an entry"],
+    GuideEntry["OEISGraph", "a Graph of a sequence and the sequences it cross-references"],
+    GuideEntry["OEISRandom", "the Entry Association for a randomly chosen sequence"],
+
+    Cell["Structured data and citations", "GuideFunctionsSubsection"],
+    GuideEntry["OEISData", "the full entry for a sequence as an Association, e.g. for Dataset"],
+    GuideEntry["OEISCitation", "a BibTeX or MediaWiki citation string, without writing to a file"],
+    GuideEntry["OEISSequence", "a lazy object wrapping one ID, with Plot/Values/Formula/... properties"],
+
     Cell["Tutorials", "RelatedTutorialsSection"],
     Cell["OEIS Package: A Tutorial", "RelatedTutorials"]
   }],
@@ -217,7 +290,14 @@ tutorialInputs = {
   "{OEISImport[\"A000045\", \"MinData\"], OEISImport[\"A000045\", \"MaxData\"]}",
   "OEISFunction[\"A000045\", Output -> False]; A000045[20]",
   "A358061[n_] := Mod[EulerPhi[n], DivisorSigma[0, n]]; OEISbFile[\"A358061\", 2000, FileNameJoin[{$TemporaryDirectory, \"b358061_tutorial.txt\"}]]; Length[ReadList[FileNameJoin[{$TemporaryDirectory, \"b358061_tutorial.txt\"}], String]]",
-  "ClearAll[A358061]; OEISbFile[\"A000045\", 15, FileNameJoin[{$TemporaryDirectory, \"b000045_tutorial.txt\"}]]; ReadList[FileNameJoin[{$TemporaryDirectory, \"b000045_tutorial.txt\"}], String]"
+  "ClearAll[A358061]; OEISbFile[\"A000045\", 15, FileNameJoin[{$TemporaryDirectory, \"b000045_tutorial.txt\"}]]; ReadList[FileNameJoin[{$TemporaryDirectory, \"b000045_tutorial.txt\"}], String]",
+  "OEISSearch[\"prime gaps\"][[1]][\"ID\"]",
+  "First[OEISSearch[{1, 1, 2, 3, 5, 8, 13}]][\"ID\"]",
+  "OEISRelated[\"A000045\"][[1 ;; 5]]",
+  "OEISCitation[\"A000045\", \"Wiki\"]",
+  "Keys[OEISData[\"A000045\"]]",
+  "seq = OEISSequence[\"A000045\"]; seq[\"Values\"][[1 ;; 10]]",
+  "seq[\"Keywords\"]"
 };
 tutorialPairs = RunExample /@ tutorialInputs;
 
@@ -248,6 +328,22 @@ tutorialNb = Notebook[
     Cell["Generate a b-file straight from OEIS data", "Section"],
     Cell["Without a local definition, OEISbFile falls back to whatever OEIS already has published for that ID.", "Text"],
     StepCells[{tutorialPairs[[10]]}],
+
+    Cell["Search OEIS", "Section"],
+    Cell["OEISSearch[text] searches by free text; OEISSearch[{n1,n2,...}] searches by a sequence of numbers. Both hit the same JSON endpoint OEISImport uses for ID lookup, just with a different query, and return a list of Entry Associations.", "Text"],
+    StepCells[tutorialPairs[[11 ;; 12]]],
+
+    Cell["Related sequences and citations", "Section"],
+    Cell["OEISRelated parses the IDs OEIS cross-references from an entry's \"xref\" field. OEISCitation returns a citation string directly, without writing to a file -- OEISExport's \".bib\"/\".wiki\" output is built from it.", "Text"],
+    StepCells[tutorialPairs[[13 ;; 14]]],
+
+    Cell["Structured data", "Section"],
+    Cell["OEISData[id] is a thin wrapper around OEISImport[id, \"Entry\"], for e.g. Dataset[OEISData[id]].", "Text"],
+    StepCells[{tutorialPairs[[15]]}],
+
+    Cell["The OEISSequence object", "Section"],
+    Cell["OEISSequence[id] is a lazy object wrapping one ID: nothing is fetched until a property is accessed. seq[\"Values\"] gives just the a(n) values (unlike \"Data\", which pairs them with n); seq[\"Keywords\"] gives OEIS's own classification keywords. Other properties: \"Plot\", \"Formula\", \"References\", \"Related\", \"Graph\", \"Citation\", \"URL\", \"Entry\".", "Text"],
+    StepCells[tutorialPairs[[16 ;; 17]]],
 
     Cell["See Also", "Section"],
     Cell["The OEIS Package guide page lists every function with a one-line description.", "Text"]

@@ -128,6 +128,83 @@ NOTE={Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1.}
 
 **HTML citation (`.html`) and MediaWiki citation (`.wiki`)** work the same way, and every `OEISExport`/`OEISImport` function accepts a list of IDs to batch-process several sequences at once.
 
+## 9. Search OEIS
+
+`OEISSearch[text]` searches by free text; `OEISSearch[{n1,n2,...}]` searches by a sequence of numbers. Both hit the same JSON endpoint `OEISImport` uses for ID lookup, just with a different query, and return up to 10 results (OEIS's default page size) as a list of Entry Associations:
+
+```wl
+OEISSearch["prime gaps"][[1]]["ID"]
+(* "A001223" *)
+
+First[OEISSearch[{1, 1, 2, 3, 5, 8, 13}]]["ID"]
+(* "A000045" *)
+```
+
+## 10. Related sequences and citations without a file
+
+`OEISRelated` parses the IDs OEIS cross-references from an entry's `"xref"` field (its "Cf. A000032, ..." comments):
+
+```wl
+OEISRelated["A000045"][[1 ;; 5]]
+(* {"A001622", "A039834", "A001519", "A001906", "A001690"} *)
+```
+
+`OEISCitation[id, format]` returns a citation string directly, without writing to a file -- `OEISExport`'s `.bib`/`.wiki` output is built from it:
+
+{% raw %}
+```wl
+OEISCitation["A000045", "Wiki"]
+(* "* {{oeis|A000045}}: Fibonacci numbers: F(n) = F(n-1) + F(n-2) with F(0) = 0 and F(1) = 1." *)
+```
+{% endraw %}
+
+## 11. Structured data
+
+`OEISData[id]` is a thin wrapper around `OEISImport[id, "Entry"]` -- the whole entry as one Association, e.g. for `Dataset[OEISData[id]]`:
+
+```wl
+Keys[OEISData["A000045"]]
+(* {"ID", "Description", "Author", "Date", "Offset", "Data", "Formula"} *)
+```
+
+## 12. The OEISSequence object
+
+`OEISSequence[id]` is a lazy object wrapping one ID: nothing is fetched until a property is actually accessed.
+
+```wl
+seq = OEISSequence["A000045"];
+seq["Values"][[1 ;; 10]]
+(* {0, 1, 1, 2, 3, 5, 8, 13, 21, 34} *)
+```
+
+`"Values"` gives just the a(n) values, unlike `"Data"`, which pairs them with n. `"Keywords"` gives OEIS's own classification keywords:
+
+```wl
+seq["Keywords"]
+(* {"nonn", "core", "nice", "easy", "hear", "changed"} *)
+```
+
+Other properties: `"Data"`, `"Plot"`, `"Description"`, `"Author"`, `"Date"`, `"Offset"`, `"Formula"`, `"References"` (literature references -- distinct from `"Related"`), `"Related"`, `"Graph"`, `"Citation"`, `"URL"`, `"Entry"`.
+
+## 13. Graph of related sequences
+
+`OEISGraph[id]` returns a `Graph` of `id` and the sequences `OEISRelated` finds for it, star-shaped around `id` -- built from the one fetch `OEISRelated` already makes, no extra network calls per related sequence:
+
+```wl
+g = OEISGraph["A000045"];
+{VertexCount[g], EdgeCount[g]}
+(* {90, 89} *)
+```
+
+## 14. A random sequence
+
+OEIS has no dedicated random-sequence endpoint, so `OEISRandom[]` picks a random A-number and retries on a miss (a withdrawn/merged/not-yet-assigned number), returning the Entry Association for whatever it lands on:
+
+```wl
+Keys[OEISRandom[]]
+(* {"ID", "Description", "Author", "Date", "Offset", "Data", "Formula"} *)
+```
+
 ## Environment note: broken CURLLink on Linux
 
 If `Import`/`URLFetch` fail with `curlLink_initialize was not loaded` or `OEIS::conopen` even though the network is reachable, your Wolfram Engine's bundled `libcurllink.so` is likely incompatible with the system's OpenSSL (common on older Mathematica installs paired with a modern Linux distro). `OEIS.m` already works around this: `OEISReadJSON` automatically falls back to invoking the system's `curl` (with `LD_LIBRARY_PATH` cleared, since Mathematica otherwise makes `curl` load its own bundled, older `libcurl`) whenever the built-in HTTP client fails.
@@ -142,5 +219,12 @@ If `Import`/`URLFetch` fail with `curlLink_initialize was not loaded` or `OEIS::
 | `OEISFunction` | Materialize `ID[n]` in your session |
 | `OEISExport` | Export to `.m`, `.txt`/`.csv`/`.tsv`, `.bib`, `.html`, `.wiki`, images |
 | `OEISbFile` | Write a b-file for a given ID up to a maximum index |
+| `OEISSearch` | Search by free text or by a sequence of numbers |
+| `OEISRelated` | IDs OEIS cross-references from an entry |
+| `OEISGraph` | A `Graph` of a sequence and its cross-references |
+| `OEISRandom` | The Entry Association for a randomly chosen sequence |
+| `OEISData` | The full entry as an Association, e.g. for `Dataset` |
+| `OEISCitation` | A `"BibTeX"`/`"Wiki"` citation string, without writing to a file |
+| `OEISSequence` | A lazy object wrapping one ID, with `Plot`/`Values`/`Formula`/... properties |
 
 See the [Function Index](functions.md) for full signatures and options, the [README](https://github.com/EnriquePH/OEIS-Mathematica#readme) for installation and project status, and [CONTRIBUTING.md](https://github.com/EnriquePH/OEIS-Mathematica/blob/master/CONTRIBUTING.md) to send improvements.
