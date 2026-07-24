@@ -7,7 +7,7 @@
 ![Package](https://img.shields.io/badge/Package-OEIS.m-success.svg)
 ![Paclet](https://img.shields.io/badge/Paclet-3.1.0-9c27b0.svg)
 [![Mathics offline tests](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/mathics-offline.yml/badge.svg)](https://github.com/EnriquePH/OEIS-Mathematica/actions/workflows/mathics-offline.yml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21516520.svg)](https://doi.org/10.5281/zenodo.21516520)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21539225.svg)](https://doi.org/10.5281/zenodo.21539225)
 
 Multipurpose package for using OEIS data from Wolfram Language.
 
@@ -165,7 +165,7 @@ GitHub web UI) after cutting the release.
 
 If you use this package in a project or publication, please cite it using the
 metadata in [CITATION.cff](CITATION.cff), which includes the archived
-[Zenodo](https://zenodo.org/) DOI: [10.5281/zenodo.21516520](https://doi.org/10.5281/zenodo.21516520).
+[Zenodo](https://zenodo.org/) DOI: [10.5281/zenodo.21539225](https://doi.org/10.5281/zenodo.21539225).
 
 ## Contributing
 

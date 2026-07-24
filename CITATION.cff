@@ -19,5 +19,5 @@ keywords:
 description: "Wolfram Language package for working with OEIS sequence data through the official JSON API."
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.21516520
+    value: 10.5281/zenodo.21539225
     description: "Concept DOI, always resolves to the latest release."
